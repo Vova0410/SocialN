@@ -1,15 +1,13 @@
 import React from 'react';
 import classes from './Profile.module.css';
-import MyPosts from './MyPosts/MyPosts.jsx'
+import MyPosts from './MyPosts/MyPosts.jsx';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 
 const Profile = () => {
     return(
-        <div>
-            <div className={classes.content_header}>
-                <img src="http://www.fotoprizer.ru/img/290616-090500-ft.jpg" />
-            </div>
-            <div className={`${classes.content} ${classes.item}`}>ava + discription</div>
+        <div className={classes.profile_wrapper}>
+            <ProfileInfo />
             <MyPosts />
         </div>
     )

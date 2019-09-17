@@ -1,3 +1,11 @@
+.content_myposts {
+    padding: 10px;
+}
+
+.myposts_button {
+    padding-bottom: 10px;
+}
+
 .content_myposts img {
     width: 30px;
     height: 30px;
