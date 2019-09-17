@@ -1,0 +1,13 @@
+.dialogs_wrapper{
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    color: green;
+}
+
+.dialogs_items {
+    
+}
+
+.dialogs_messages {
+    
+}
