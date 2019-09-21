@@ -1,3 +1,11 @@
 .content_post1 img {
 
 }
+
+.content_post_likesCount {
+    color: red;
+}
+
+.content_post_likesCount span {
+    color: #4267B2;
+}

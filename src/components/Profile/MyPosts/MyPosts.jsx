@@ -13,7 +13,7 @@ const MyPosts = (props) => {
         {id: 5, post: "Hi, haw are you?", likesCount: 121},
     ];
 
-    let postElements = postsData.map( postEl => <Post message={postEl.post} likesCount={postEl.likesCount} /> )
+    let postElements = postsData.map( postEl => <Post message={postEl.post} likesCount={postEl.likesCount} /> );
     return(
             <div className={classes.content_myposts} >
                     <h3>myposts</h3>
