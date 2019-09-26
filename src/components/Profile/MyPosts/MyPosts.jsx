@@ -3,26 +3,26 @@ import classes from './MyPosts.module.css';
 import Post from './Post/Post'
 
 
+
 const MyPosts = (props) => {
+    let postElements = props.posts.map( postEl => <Post message={postEl.post} likesCount={postEl.likesCount} /> );
 
-    let postsData = [
-        {id: 1, post: "Hi, haw are you?", likesCount: 12},
-        {id: 2, post: "my first message", likesCount: 10},
-        {id: 3, post: "Hi, haw are you?", likesCount: 11},
-        {id: 4, post: "Hi, haw are you?", likesCount: 1},
-        {id: 5, post: "Hi, haw are you?", likesCount: 121},
-    ];
+    let newPostElement = React.createRef();
 
-    let postElements = postsData.map( postEl => <Post message={postEl.post} likesCount={postEl.likesCount} /> );
+    let addPost = () => {
+        alert(newPostElement.current.value);
+    };
+
+
     return(
             <div className={classes.content_myposts} >
                     <h3>myposts</h3>
                 <div>
                     <div>
-                        <textarea></textarea>
+                        <textarea ref={newPostElement}></textarea>
                     </div>
                     <div className={classes.myposts_button}>
-                        <button>Add post</button>
+                        <button onClick={ addPost }>Add post</button>
                     </div>
                 </div>
                 { postElements }

@@ -7,25 +7,16 @@ import Message from './Message/Message';
 
 const Dialogs = (props) => {
 
-    let dialogsData = [
-        {id: 1, name: 'Vova'},
-        {id: 2, name: 'Vlad'},
-        {id: 3, name: 'Natasha'},
-        {id: 4, name: 'Tom'},
-        {id: 5, name: 'Vera'},
-    ];
 
-    let messagesData = [
-        {id: 1, message: "Hi!1111"},
-        {id: 2, message: "Lorem Ipsum - это текст-'рыба', часто используемый в печати и вэб-дизайне. Lorem Ipsum является"},
-        {id: 3, message: "Hi"},
-        {id: 4, message: "Lorem Ipsum - это текст-'рыба', часто используемый"},
-        {id: 5, message: "Hi1@@@@@@@@@@2"},
-        {id: 6, message: "Hi2222222222"},
-    ];
+let dialogsElements = props.stateDialogs.dialogs.map( dialogEl => <DialogItem name={dialogEl.name} id={dialogEl.id} />);
+let messagesElements = props.stateDialogs.messages.map( messEl => <DialogItem name={messEl.message} id={messEl.id} />);
 
-    let dialogsElements = dialogsData.map( dialog => (<DialogItem name={dialog.name} id={dialog.id} />) );
-    let messagesElements = messagesData.map( massage => <Message message={massage.message} /> )
+let newMessageText = React.createRef();
+
+let addMessage = () => {
+    let text = newMessageText.current.value;
+    alert(text)
+};
 
     return (
     <div className={classes.dialogs_wrapper}>
@@ -34,7 +25,15 @@ const Dialogs = (props) => {
         </div>
         <div className={classes.dialogs_messages}>
             { messagesElements }
+            <div className={classes.message_addMessage_text}>
+                <textarea ref={ newMessageText }></textarea>
+            </div>
+            <div className={classes.message_addMessage_button}>
+                <button onClick={ addMessage }>add message</button>
+            </div>
+
         </div>
+
     </div>
     )
 };

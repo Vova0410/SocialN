@@ -4,13 +4,19 @@ import MyPosts from './MyPosts/MyPosts.jsx';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 
-const Profile = () => {
+const Profile = (props) => {
+
     return(
         <div className={classes.profile_wrapper}>
             <ProfileInfo />
-            <MyPosts />
+            <MyPosts posts={props.stateProfile.posts} />
         </div>
     )
 }
 
 export default Profile;
+
+/*
+let dialogsElements = props.dialogs.map( dialog => (<DialogItem name={dialog.name} id={dialog.id} />) );
+let messagesElements = props.messages.map( massage => <Message message={massage.message} /> )
+*/
