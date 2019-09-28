@@ -8,7 +8,8 @@ let state = {
             {id: 3, post: "Hi, haw are you?", likesCount: 11},
             {id: 4, post: "Hi, haw are you?", likesCount: 1},
             {id: 5, post: "Hi, haw are you?", likesCount: 121},
-        ]
+        ],
+        newPostText: '11111111111'
     },
     messagePage: {
         dialogs: [
@@ -29,14 +30,17 @@ let state = {
         ]
     }
 };
+window.state = state;
+let i = 6;
+export let addPost = () => {
 
-export let addPost = (postMessage) => {
         let newPost = {
-        id: 5,
-        post: postMessage,
+        id: i++,
+        post: state.profilePage.newPostText,
         likesCount: 0
     };
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
     renderIntareTree(state);
 };
 
@@ -47,6 +51,11 @@ export let addMessage = (messageText) => {
         message: messageText
     };
     state.messagePage.messages.push(newMessageText);
+    renderIntareTree(state);
+};
+
+export let upDatepost = (newText) => {
+    state.profilePage.newPostText = newText;
     renderIntareTree(state);
 };
 

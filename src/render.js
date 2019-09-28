@@ -5,13 +5,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {addPost} from './state/state';
 import {addMessage} from './state/state';
+import {upDatepost} from './state/state';
 import{BrowserRouter} from 'react-router-dom';
 
 
 export let renderIntareTree = (state) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={state} addPost={addPost} addMessage={addMessage} />
+            <App state={state} addPost={addPost} addMessage={addMessage} upDatepost={upDatepost} />
         </BrowserRouter>, document.getElementById('root'));
 };
 
