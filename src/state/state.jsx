@@ -1,3 +1,5 @@
+import {renderIntareTree} from '../render';
+
 let state = {
     profilePage: {
         posts: [
@@ -26,7 +28,7 @@ let state = {
             {id: 6, message: "Hi2222222222"},
         ]
     }
-}
+};
 
 export let addPost = (postMessage) => {
         let newPost = {
@@ -35,6 +37,17 @@ export let addPost = (postMessage) => {
         likesCount: 0
     };
     state.profilePage.posts.push(newPost);
+    renderIntareTree(state);
+};
+
+export let addMessage = (messageText) => {
+
+    let newMessageText = {
+        id: 7,
+        message: messageText
+    };
+    state.messagePage.messages.push(newMessageText);
+    renderIntareTree(state);
 };
 
 export default state;
