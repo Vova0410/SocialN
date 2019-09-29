@@ -1,4 +1,11 @@
-import {renderIntareTree} from '../render';
+
+let renderIntareTree = () => {
+    console.log("state changed");
+};
+
+export const subscribe = (observer) => {
+    renderIntareTree = observer;
+};
 
 let state = {
     profilePage: {
@@ -9,7 +16,7 @@ let state = {
             {id: 4, post: "Hi, haw are you?", likesCount: 1},
             {id: 5, post: "Hi, haw are you?", likesCount: 121},
         ],
-        newPostText: '11111111111'
+        newPostText: ''
     },
     messagePage: {
         dialogs: [
@@ -27,7 +34,8 @@ let state = {
             {id: 4, message: "Lorem Ipsum - это текст-'рыба', часто используемый"},
             {id: 5, message: "Hi1@@@@@@@@@@2"},
             {id: 6, message: "Hi2222222222"},
-        ]
+        ],
+        newMessageVal: '111'
     }
 };
 window.state = state;
@@ -44,18 +52,28 @@ export let addPost = () => {
     renderIntareTree(state);
 };
 
-export let addMessage = (messageText) => {
-
-    let newMessageText = {
-        id: 7,
-        message: messageText
-    };
-    state.messagePage.messages.push(newMessageText);
+export let upDatepost = (newText) => {
+    state.profilePage.newPostText = newText;
     renderIntareTree(state);
 };
 
-export let upDatepost = (newText) => {
-    state.profilePage.newPostText = newText;
+
+export let addMessage = () => {
+
+    let newMessageText = {
+        id: 7,
+        message: state.messagePage.newMessageVal
+    };
+    state.messagePage.messages.push(newMessageText);
+    state.messagePage.newMessageVal = ''; // обнуляем
+    renderIntareTree(state);
+};
+
+
+
+export let upDataMessage = (newMess) => {
+    state.messagePage.newMessageVal = newMess;
+
     renderIntareTree(state);
 };
 
