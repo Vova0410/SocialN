@@ -9,7 +9,7 @@ let state = {
             {id: 4, post: "Hi, haw are you?", likesCount: 1},
             {id: 5, post: "Hi, haw are you?", likesCount: 121},
         ],
-        newPostText: '11111111111'
+        newPostText: ''
     },
     messagePage: {
         dialogs: [
