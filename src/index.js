@@ -3,23 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
-import state from './state/state';
-import {addPost, addMessage, upDatepost, upDataMessage, subscribe} from './state/state';
+import store from './state/state';
 import{BrowserRouter} from 'react-router-dom';
 
-let renderIntareTree = (state) => {
+let renderIntareTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-         <App state={state}
-              addPost={addPost}
-              addMessage={addMessage}
-              upDatepost={upDatepost}
-              upDataMessage={upDataMessage} />
+         <App state={store.getState()}
+              addPost={store.addPost.bind(store)}
+              addMessage={store.addMessage.bind(store)}
+              upDatepost={store.upDatepost.bind(store)}
+              upDataMessage={store.upDataMessage.bind(store)} />
         </BrowserRouter>,
         document.getElementById('root'));
 };
-renderIntareTree(state);
-subscribe(renderIntareTree);
+renderIntareTree(store.getState());
+store.subscribe(renderIntareTree);
 
 
 
