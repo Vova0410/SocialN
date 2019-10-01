@@ -11,14 +11,14 @@ let messagesElements = props.stateDialogs.messages.map( messEl => <DialogItem na
 
 let newMessageText = React.createRef();
 
-/*let addMessage1 = () => {
+let addMessage = () => {
     //let text = newMessageText.current.value;
-    props.addMessage();
-};*/
+    props.dispatch( { type: 'ADD-MESSAGE' } );
+};
 
 let onMessageChange = () => {
-    let text = newMessageText.current.value;
-    props.upDataMessage(text);
+    let newMess = newMessageText.current.value;
+    props.dispatch( { type: 'UP-DATE-MESSAGE', newMess: newMess } );
 }
 
     return (
@@ -32,7 +32,7 @@ let onMessageChange = () => {
                 <textarea ref={newMessageText} onChange={onMessageChange} value={props.stateDialogs.newMessageVal}></textarea>
             </div>
             <div className={classes.message_addMessage_button}>
-                <button onClick={ props.addMessage }>add message</button>
+                <button onClick={ addMessage }>add message</button>
             </div>
 
         </div>

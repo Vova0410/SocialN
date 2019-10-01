@@ -10,10 +10,8 @@ let renderIntareTree = () => {
     ReactDOM.render(
         <BrowserRouter>
          <App state={store.getState()}
-              addPost={store.addPost.bind(store)}
-              addMessage={store.addMessage.bind(store)}
-              upDatepost={store.upDatepost.bind(store)}
-              upDataMessage={store.upDataMessage.bind(store)} />
+              dispatch={store.dispatch.bind(store)}
+         />
         </BrowserRouter>,
         document.getElementById('root'));
 };

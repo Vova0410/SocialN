@@ -9,7 +9,7 @@ const Profile = (props) => {
     return(
         <div className={classes.profile_wrapper}>
             <ProfileInfo />
-            <MyPosts posts={props.stateProfile.posts} newPostText={props.stateProfile.newPostText} addPost={props.addPost} upDatepost={props.upDatepost} />
+            <MyPosts posts={props.stateProfile.posts} newPostText={props.stateProfile.newPostText} dispatch={props.dispatch} />
         </div>
     )
 }

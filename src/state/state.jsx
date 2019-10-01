@@ -1,5 +1,6 @@
 
 let store = {
+
     _state: {
         profilePage: {
             posts: [
@@ -31,42 +32,52 @@ let store = {
             newMessageVal: ''
         }
     },
+
     getState() {
-        return this._state;
-    },
+            return this._state;
+        },
+
     _callSubscribe() {
-        console.log("state changed");
-    },
+            console.log("state changed");
+        },
+
     subscribe(observer) {
-        this._callSubscribe = observer;
-    },
-    addPost() {
-        let newPost = {
-            id: 6,
-            post: this._state.profilePage.newPostText,
-            likesCount: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscribe(this._state);
-    },
-    upDatepost(newText) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscribe(this._state);
-    },
-    addMessage() {
-        let newMessageText = {
-            id: 7,
-            message: this._state.messagePage.newMessageVal
-        };
-        this._state.messagePage.messages.push(newMessageText);
-        this._state.messagePage.newMessageVal = ''; // обнуляем
-        this._callSubscribe(this._state);
-    },
-    upDataMessage(newMess) {
-        this._state.messagePage.newMessageVal = newMess;
-        this._callSubscribe(this._state);
-    },
+            this._callSubscribe = observer;
+        },
+
+    dispatch(action) {
+        if ( action.type === 'ADD-POST' ) {
+            let newPost = {
+                id: 6,
+                post: this._state.profilePage.newPostText,
+                likesCount: 0
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscribe(this._state);
+        }
+
+        else if( action.type === 'UP-DATE-POST' ) {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscribe(this._state);
+        }
+
+        else if( action.type === 'ADD-MESSAGE' ) {
+            let newMessageText = {
+                id: 7,
+                message: this._state.messagePage.newMessageVal
+            };
+            this._state.messagePage.messages.push(newMessageText);
+            this._state.messagePage.newMessageVal = ''; // обнуляем
+            this._callSubscribe(this._state);
+        }
+
+        else if( action.type === 'UP-DATE-MESSAGE' ) {
+            this._state.messagePage.newMessageVal = action.newMess;
+            this._callSubscribe(this._state);
+        }
+    }
+
 };
 
 
@@ -75,6 +86,14 @@ window.store = store;
 
 
 
+/*addPost() {
+ },*/
 
+/*upDatepost(newText) {
+ },*/
+/*addMessage() {
+ },*/
+/*upDataMessage(newMess) {
+ },*/
 
 
