@@ -1,6 +1,8 @@
 import React from 'react';
 import classes from './MyPosts.module.css';
-import Post from './Post/Post'
+import Post from './Post/Post';
+import {addPostCreator, onPostChangeCreator} from '../../../state/profile-reducer';
+
 
 
 
@@ -10,14 +12,14 @@ const MyPosts = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        props.dispatch( {type: 'ADD-POST'} );
+        props.dispatch( addPostCreator() );
         //props.upDatepost(''); // зануление
 
     };
 
     let onPostChange = () => {
         let newText = newPostElement.current.value;
-        props.dispatch({ type :'UP-DATE-POST', newText: newText});
+        props.dispatch(onPostChangeCreator(newText));
     };
 
 

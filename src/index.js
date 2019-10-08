@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
-import store from './state/state';
+import store from './state/redux-store';
 import{BrowserRouter} from 'react-router-dom';
 
 let renderIntareTree = () => {

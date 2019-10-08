@@ -1,25 +1,26 @@
 import React from 'react';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
+import {addMessageCreatir, onMessageChangeCreator} from '../../state/dialog-reducer';
 import Message from './Message/Message';
 
 
 
 const Dialogs = (props) => {
 let dialogsElements = props.stateDialogs.dialogs.map( dialogEl => <DialogItem name={dialogEl.name} id={dialogEl.id} />);
-let messagesElements = props.stateDialogs.messages.map( messEl => <DialogItem name={messEl.message} id={messEl.id} />);
+let messagesElements = props.stateDialogs.messages.map( messEl => <Message name={messEl.message} id={messEl.id} />);
 
 let newMessageText = React.createRef();
 
 let addMessage = () => {
     //let text = newMessageText.current.value;
-    props.dispatch( { type: 'ADD-MESSAGE' } );
+    props.dispatch( addMessageCreatir() );
 };
 
 let onMessageChange = () => {
     let newMess = newMessageText.current.value;
-    props.dispatch( { type: 'UP-DATE-MESSAGE', newMess: newMess } );
-}
+    props.dispatch( onMessageChangeCreator(newMess) );
+};
 
     return (
     <div className={classes.dialogs_wrapper}>

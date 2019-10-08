@@ -10,6 +10,7 @@ const Profile = (props) => {
         <div className={classes.profile_wrapper}>
             <ProfileInfo />
             <MyPosts posts={props.stateProfile.posts} newPostText={props.stateProfile.newPostText} dispatch={props.dispatch} />
+
         </div>
     )
 }
