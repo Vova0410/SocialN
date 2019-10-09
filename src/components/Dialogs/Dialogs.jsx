@@ -1,25 +1,24 @@
 import React from 'react';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
-import {addMessageCreatir, onMessageChangeCreator} from '../../state/dialog-reducer';
+import {addMessageCreator, onMessageChangeCreator} from '../../state/dialog-reducer';
 import Message from './Message/Message';
 
 
 
 const Dialogs = (props) => {
-let dialogsElements = props.stateDialogs.dialogs.map( dialogEl => <DialogItem name={dialogEl.name} id={dialogEl.id} />);
-let messagesElements = props.stateDialogs.messages.map( messEl => <Message name={messEl.message} id={messEl.id} />);
+let dialogsElements = props.dialogs.map( dialogEl => <DialogItem name={dialogEl.name} id={dialogEl.id} />);
+let messagesElements = props.messages.map( messEl => <Message name={messEl.message} id={messEl.id} />);
 
 let newMessageText = React.createRef();
 
 let addMessage = () => {
-    //let text = newMessageText.current.value;
-    props.dispatch( addMessageCreatir() );
+    props.addMessageCont();
 };
 
 let onMessageChange = () => {
     let newMess = newMessageText.current.value;
-    props.dispatch( onMessageChangeCreator(newMess) );
+    props.upDateMessageChange(newMess);
 };
 
     return (
@@ -30,7 +29,7 @@ let onMessageChange = () => {
         <div className={classes.dialogs_messages}>
             { messagesElements }
             <div className={classes.message_addMessage_text}>
-                <textarea ref={newMessageText} onChange={onMessageChange} value={props.stateDialogs.newMessageVal}></textarea>
+                <textarea ref={newMessageText} onChange={onMessageChange} value={props.newMessageVal}></textarea>
             </div>
             <div className={classes.message_addMessage_button}>
                 <button onClick={ addMessage }>add message</button>

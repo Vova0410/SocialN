@@ -42,7 +42,7 @@ const dialogReducer = (state = initialState, action) => {
     return state;
 };
 
-export const addMessageCreatir = () => {
+export const addMessageCreator = () => {
     return { type: ADD_MESSAGE };
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
-import {addPostCreator, onPostChangeCreator} from '../../../state/profile-reducer';
+
 
 
 
@@ -11,16 +11,15 @@ const MyPosts = (props) => {
 
     let newPostElement = React.createRef();
 
-    let addPost = () => {
-        props.dispatch( addPostCreator() );
-        //props.upDatepost(''); // зануление
+    let onAddPost = () => {
+        props.addPost(''); // зануление
 
     };
 
     let onPostChange = () => {
         let newText = newPostElement.current.value;
-        props.dispatch(onPostChangeCreator(newText));
-    };
+     props.upDateNewPosttext(newText);
+     };
 
 
     return(
@@ -31,7 +30,7 @@ const MyPosts = (props) => {
                         <textarea ref={newPostElement} value={props.newPostText} onChange={onPostChange}></textarea>
                     </div>
                     <div className={classes.myposts_button}>
-                        <button onClick={ addPost }>Add post</button>
+                        <button onClick={ onAddPost }>Add post</button>
                     </div>
                 </div>
                 { postElements }
