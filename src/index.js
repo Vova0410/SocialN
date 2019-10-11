@@ -5,14 +5,14 @@ import * as serviceWorker from './serviceWorker';
 import App from './App';
 import store from './state/redux-store';
 import{BrowserRouter} from 'react-router-dom';
+import {MyContext} from './MyContext';
 
 let renderIntareTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-         <App store={store}
-             /*state={store.getState()}
-              dispatch={store.dispatch.bind(store)}*/
-         />
+            <MyContext.Provider value={store}>
+                <App  />
+            </MyContext.Provider>
         </BrowserRouter>,
         document.getElementById('root'));
 };
@@ -27,3 +27,8 @@ store.subscribe(renderIntareTree);
  serviceWorker.unregister();
 
 
+/*store={store}*/
+
+
+/*state={store.getState()}
+ dispatch={store.dispatch.bind(store)}*/

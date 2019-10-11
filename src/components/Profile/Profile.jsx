@@ -9,7 +9,7 @@ const Profile = (props) => {
     return(
         <div className={classes.profile_wrapper}>
             <ProfileInfo />
-            <MyPostsComponent store={props.store}  />
+            <MyPostsComponent />
 
         </div>
     )

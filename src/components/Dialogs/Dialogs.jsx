@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
-import {addMessageCreator, onMessageChangeCreator} from '../../state/dialog-reducer';
 import Message from './Message/Message';
 
 

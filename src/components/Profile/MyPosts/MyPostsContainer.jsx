@@ -1,31 +1,36 @@
 import React from 'react';
 import {addPostCreator, onPostChangeCreator} from '../../../state/profile-reducer';
+import {MyContext} from '../../../MyContext.js';
 import MyPosts from './MyPosts';
 
 
+const MyPostsComponent = () => {
 
 
-const MyPostsComponent = (props) => {
+    return (
+        <MyContext.Consumer>
+            { (store) => {
+            let state = store.getState();
 
-    let state = props.store.getState();
-
-    let addPost = () => {
-        props.store.dispatch( addPostCreator() );
-
-
-    };
-
-    let onPostChangeCont = (newText) => {
-
-        props.store.dispatch(onPostChangeCreator(newText));
-    };
+            let addPost = () => {
+            store.dispatch( addPostCreator() );
 
 
-    return(
-            <MyPosts addPost={addPost}
-                     upDateNewPosttext={onPostChangeCont}
-                     posts={state.profilePage.posts}
-                     newPostText={state.profilePage.newPostText} />
+        };
+
+            let onPostChangeCont = (newText) => {
+
+            store.dispatch(onPostChangeCreator(newText));
+        };
+
+            return <MyPosts addPost={addPost}
+                            upDateNewPosttext={onPostChangeCont}
+                            posts={state.profilePage.posts}
+                            newPostText={state.profilePage.newPostText} />
+        }
+        }
+        </MyContext.Consumer>
+
 
     )
 };
