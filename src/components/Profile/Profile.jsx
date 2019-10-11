@@ -1,10 +1,10 @@
 import React from 'react';
 import classes from './Profile.module.css';
-import MyPostsComponent from './MyPosts/MyPostsContainer';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
+import MyPostsComponent from "./MyPosts/MyPostsContainer";
 
 
-const Profile = (props) => {
+const Profile = () => {
 
     return(
         <div className={classes.profile_wrapper}>

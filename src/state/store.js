@@ -1,3 +1,4 @@
+/*
 import profileReducer from './profile-reducer';
 import dialogReducer from './dialog-reducer';
 
@@ -65,3 +66,4 @@ export default store;
 
 
 
+*/

@@ -7,16 +7,19 @@ import Post from './Post/Post';
 
 
 const MyPosts = (props) => {
+    debugger;
     let postElements = props.posts.map( postEl => <Post message={postEl.post} likesCount={postEl.likesCount} /> );
 
     let newPostElement = React.createRef();
 
     let onAddPost = () => {
+        debugger;
         props.addPost(''); // зануление
 
     };
 
     let onPostChange = () => {
+        debugger;
         let newText = newPostElement.current.value;
      props.upDateNewPosttext(newText);
      };

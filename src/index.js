@@ -6,13 +6,14 @@ import App from './App';
 import store from './state/redux-store';
 import{BrowserRouter} from 'react-router-dom';
 import {MyContext} from './MyContext';
+import Provider from "react-redux/es/components/Provider";
 
 let renderIntareTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <MyContext.Provider value={store}>
+            <Provider store={store}>
                 <App  />
-            </MyContext.Provider>
+            </Provider>
         </BrowserRouter>,
         document.getElementById('root'));
 };
