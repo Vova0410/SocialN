@@ -8,7 +8,7 @@ import{BrowserRouter} from 'react-router-dom';
 import {MyContext} from './MyContext';
 import Provider from "react-redux/es/components/Provider";
 
-let renderIntareTree = () => {
+
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
@@ -16,9 +16,7 @@ let renderIntareTree = () => {
             </Provider>
         </BrowserRouter>,
         document.getElementById('root'));
-};
-renderIntareTree(store.getState());
-store.subscribe(renderIntareTree);
+
 
 
 

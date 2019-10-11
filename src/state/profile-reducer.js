@@ -1,5 +1,5 @@
 const ADD_POST = 'ADD-POST';
-const UP_DATE_POST ='UP-DATE-POST';
+const UP_DATE_POST = 'UP-DATE-POST';
 
 let initialState = {
     posts: [
@@ -12,23 +12,32 @@ let initialState = {
     newPostText: ''
 };
 
-const profileReducer =(state = initialState, action) => {
+const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST:{
+
             let newPost = {
-            id: 6,
-            post: state.newPostText,
-            likesCount: 0
-        };
-            state.posts.push(newPost);
-            state.newPostText = '';
-            return state;
+                id: 6,
+                post: state.newPostText,
+                likesCount: 0
+            };
+            let stateCopy = {...state};
+            stateCopy.posts = [...state.posts];
 
-        case UP_DATE_POST:
-            state.newPostText = action.newText;
-            return state;
+            stateCopy.posts.push(newPost);
+            stateCopy.newPostText = '';
+            return stateCopy;
 
-        default: return state;
+        }
+        case UP_DATE_POST: {
+            let stateCopy = {...state};
+            stateCopy.newPostText = action.newText;
+            return stateCopy;
+
+        }
+
+        default:
+            return state;
     }
 };
 
@@ -37,7 +46,7 @@ export const addPostCreator = () => {
 };
 
 export const onPostChangeCreator = (newText) => {
-    return  {type : UP_DATE_POST, newText: newText};
+    return {type: UP_DATE_POST, newText: newText};
 };
 
 export default profileReducer;
