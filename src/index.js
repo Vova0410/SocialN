@@ -5,7 +5,6 @@ import * as serviceWorker from './serviceWorker';
 import App from './App';
 import store from './state/redux-store';
 import{BrowserRouter} from 'react-router-dom';
-import {MyContext} from './MyContext';
 import Provider from "react-redux/es/components/Provider";
 
 

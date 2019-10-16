@@ -1,0 +1,73 @@
+h3 {
+    margin: 0;
+    padding: 0;
+}
+.users_wrapper {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+
+.users_items {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    /*background-color: #fff;*/
+
+}
+
+.users_data {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.users_data_status {
+    margin-top: 0;
+}
+
+.users_data_location {
+    align-self: center;
+}
+
+
+
+
+.users_photo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+
+}
+
+.users_button {
+    display: flex;
+}
+
+
+.follow_button {
+    display: flex;
+    width: 100px;
+    height: 30px;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    background-color: #8EEED1;
+    cursor: pointer;
+}
+
+.unfollow_button {
+    display: flex;
+    width: 100px;
+    height: 30px;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    background-color: #BDBDBD;
+    cursor: pointer;
+}

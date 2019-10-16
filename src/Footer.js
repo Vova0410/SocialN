@@ -7,4 +7,5 @@ const Footer = () => {
     return(
         <p>bla bla</p>
     )
-}export default Footer;
+}
+export default Footer;
