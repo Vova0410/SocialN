@@ -71,3 +71,26 @@ h3 {
     background-color: #BDBDBD;
     cursor: pointer;
 }
+
+.selectedPage {
+    font-weight: bold;
+
+}
+
+.unselectedPage {
+    color: darkred;
+}
+
+.pages_wrapper {
+    width: 200px;
+    overflow: hidden;
+    margin: 0 auto;
+
+
+
+}
+
+.pages_wrapper span{
+    padding-left: 10px;
+
+}

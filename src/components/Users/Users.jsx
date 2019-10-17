@@ -1,24 +1,32 @@
-/*
 import React from 'react';
 import classes from './Users.module.css';
-import * as axios from 'axios';
 import userPhoto from '../../img/empty.png';
 
 
+const Users = (props) => {
 
-let Users = (props) => {
-const getUsers = () => {
-    if (props.users.length === 0) {  //временный костыль
-        axios.get('https:social-network.samuraijs.com/api/1.0/users')
-            .then( respons => { props.setUsers( respons.data.items)})
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
     }
-}
-
 
     return <div>
         <h3>Users</h3>
-        <button onClick={getUsers}>Get Users</button>
         <div className={classes.users_wrapper}>
+            <div className={classes.pages_wrapper}>
+                {
+                    pages.map((p) => {
+                        return (
+                            <span
+                                className={(props.currentPage === p) ? classes.selectedPage : classes.unselectedPage}
+                                onClick={(e) => {
+                                    props.onPageChange(p)
+                                } }>{p}</span>
+                        )
+                    })
+                }
+            </div>
             {
                 props.users.map((user) => {
                     return (
@@ -37,8 +45,12 @@ const getUsers = () => {
                             <div className={classes.users_button}>
                                 {
                                     user.followed
-                                        ? <div className={classes.follow_button} onClick={ () => {props.unfollow(user.id)}}>follow</div>
-                                        : <div className={classes.unfollow_button} onClick={ () => {props.follow(user.id) }}>unfollow</div>
+                                        ? <div className={classes.follow_button} onClick={ () => {
+                                        props.unfollow(user.id)
+                                    }}>follow</div>
+                                        : <div className={classes.unfollow_button} onClick={ () => {
+                                        props.follow(user.id)
+                                    }}>unfollow</div>
                                 }
                             </div>
 
@@ -49,13 +61,6 @@ const getUsers = () => {
             }
         </div>
     </div>
-
 };
 
-
 export default Users;
-
-
-{/!*
- <div className={classes.follow_button}>follow</div>*!/}
-*/
