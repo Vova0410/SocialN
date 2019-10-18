@@ -1,12 +1,14 @@
-.content_myposts {
-    padding: 10px;
+.myposts_wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10%;
 }
 
 .myposts_button {
     padding-bottom: 10px;
 }
 
-.content_myposts img {
+.myposts_wrapper img {
     width: 30px;
     height: 30px;
 

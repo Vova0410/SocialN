@@ -23,7 +23,7 @@ const MyPosts = (props) => {
 
 
     return(
-            <div className={classes.content_myposts} >
+            <div className={classes.myposts_wrapper} >
                     <h3>myposts</h3>
                 <div>
                     <div>
