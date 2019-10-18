@@ -20,9 +20,7 @@ const Users = (props) => {
                         return (
                             <span
                                 className={(props.currentPage === p) ? classes.selectedPage : classes.unselectedPage}
-                                onClick={(e) => {
-                                    props.onPageChange(p)
-                                } }>{p}</span>
+                                onClick={(e) => {props.onPageChange(p)}}>{p}</span>
                         )
                     })
                 }
@@ -46,10 +44,10 @@ const Users = (props) => {
                                 {
                                     user.followed
                                         ? <div className={classes.follow_button} onClick={ () => {
-                                        props.unfollow(user.id)
+                                        props.unfollowed(user.id)
                                     }}>follow</div>
                                         : <div className={classes.unfollow_button} onClick={ () => {
-                                        props.follow(user.id)
+                                        props.followed(user.id)
                                     }}>unfollow</div>
                                 }
                             </div>

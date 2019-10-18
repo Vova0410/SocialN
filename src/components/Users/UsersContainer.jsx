@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-    ChangeCurrentPageAC, followedAC, setUsersAC, toggleIsFetcingAC, totalUsersCountAC,
-    unfollowedAC
+    changeCurrentPage, followed, setUsers, toggleIsFetcing, setTotaUsersCount,
+    unfollowed
 } from '../../state/users-reducer';
 import connect from 'react-redux/es/connect/connect';
 import * as axios from 'axios';
@@ -41,8 +41,8 @@ class UsersApiContainer extends React.Component {
                currentPage={this.props.currentPage}
                users={this.props.users}
                onPageChange={this.onPageChange.bind(this)}
-               follow={this.props.follow}
-               unfollow={this.props.unfollow}
+               followed={this.props.followed}
+               unfollowed={this.props.unfollowed}
                isFetcing={this.props.isFetcing}
         />
         </>
@@ -60,7 +60,7 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
+/*const mapDispatchToProps = (dispatch) => {
     return {
         follow: (userId) => {
             dispatch(followedAC(userId))
@@ -83,8 +83,8 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(toggleIsFetcingAC(isFetching))
         }
     }
-};
+};*/
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiContainer);
+const UsersContainer = connect(mapStateToProps, {changeCurrentPage, followed, setUsers, toggleIsFetcing, setTotaUsersCount, unfollowed})(UsersApiContainer);
 
 export default UsersContainer;
