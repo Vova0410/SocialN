@@ -1,0 +1,16 @@
+.preloader_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(13,22,189,0.2);
+
+}
+
+img.preloader{
+    position: absolute;
+    top: calc(50vh - 150px);
+    left: calc(50vw - 150px);opacity: 0.9;
+
+}
