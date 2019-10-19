@@ -82,13 +82,20 @@ h3 {
 }
 
 .pages_wrapper {
+    position: relative;
+    height: 30px;
     width: 200px;
     overflow: hidden;
     margin: 0 auto;
-
-
-
 }
+
+.pages_inner {
+    position: absolute;
+    left: -2321px;
+    height: 20px;
+}
+
+
 
 .pages_wrapper span{
     padding-left: 10px;

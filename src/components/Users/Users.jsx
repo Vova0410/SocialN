@@ -16,15 +16,15 @@ const Users = (props) => {
         <h3>Users</h3>
         <div className={classes.users_wrapper}>
             <div className={classes.pages_wrapper}>
-                {
-                    pages.map((p) => {
-                        return (
-                            <span
-                                className={(props.currentPage === p) ? classes.selectedPage : classes.unselectedPage}
-                                onClick={(e) => {props.onPageChange(p)}}>{p}</span>
-                        )
-                    })
-                }
+
+                <div className={classes.pages_inner}>
+                    { pages.map((p) => {
+                    return (
+                        <span className={(props.currentPage === p) ? classes.selectedPage : classes.unselectedPage}
+                              onClick={(e) => {props.onPageChange(p)}}>{p}</span>
+                    )
+                }) }
+                </div>
             </div>
             {
                 props.users.map((user) => {

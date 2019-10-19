@@ -30,23 +30,23 @@
 .avatar_photo {
     position: absolute;
     bottom: -5%;
-    left: 10%
+    left: 7%
 }
 
 .avatar_photo {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 162px;
-    height: 162px;
+    width: 172px;
+    height: 172px;
     background: #ffffff;
     border-radius: 50%;
 }
 
 .avatar_photo img {
     display: flex;
-    width: 150px;
-    height:150px;
+    width: 166px;
+    height:166px;
     min-width: 120px;
     border-radius: 50%;
 
