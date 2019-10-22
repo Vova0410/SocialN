@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     changeCurrentPage, followed, setUsers, toggleIsFetcing, setTotaUsersCount,
-    unfollowed, toggleDisebling
+    unfollowed, toggleisDisabling
 } from '../../state/users-reducer';
 import connect from 'react-redux/es/connect/connect';
 import * as axios from 'axios';
@@ -48,8 +48,10 @@ class UsersApiContainer extends React.Component {
                followed={this.props.followed}
                unfollowed={this.props.unfollowed}
                isFetcing={this.props.isFetcing}
-               toggleDisebling={this.props.toggleDisebling}
-               inDisablingProcess={this.props.inDisablingProcess}
+               isDisabling={this.props.isDisabling}
+               toggleisDisabling={this.props.toggleisDisabling}
+
+
         />
         </>
     }
@@ -63,7 +65,8 @@ const mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        inDisablingProcess: state.usersPage.inDisablingProcess
+        isDisabling: state.usersPage.isDisabling,
+
     }
 };
 
@@ -92,6 +95,6 @@ const mapStateToProps = (state) => {
  }
  };*/
 
-const UsersContainer = connect(mapStateToProps, {changeCurrentPage, followed, setUsers, toggleIsFetcing, setTotaUsersCount, unfollowed, toggleDisebling})(UsersApiContainer);
+const UsersContainer = connect(mapStateToProps, {changeCurrentPage, followed, setUsers, toggleIsFetcing, setTotaUsersCount, unfollowed, toggleisDisabling})(UsersApiContainer);
 
 export default UsersContainer;
