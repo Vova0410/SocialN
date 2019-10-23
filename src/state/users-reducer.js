@@ -1,3 +1,4 @@
+import {userAPI} from "../api/api";
 const FOLLOWED = 'FOLLOWED';
 const UNFOLLOWED = 'UNFOLLOWED';
 const SET_USERS = 'SET-USERS';
@@ -9,9 +10,9 @@ const TOGGLE_IS_DISABLING = 'TOGGLE_IS_DISABLING';
 
 let initialState = {
     users: [],
-    pageSize: 5,
+    pageSize: 20,
     totalUsersCount: 16,
-    currentPage: 2,
+    currentPage: 45,
     isFetching: true,
     isDisabling: []
 
@@ -80,6 +81,54 @@ export const setTotaUsersCount = (totalCount) => ({type: TOTAL_USERS_COUNT, tota
 export const changeCurrentPage = (currentPage) => ({type: CHANGE_CURRENT_PAGE, currentPage});
 export const toggleIsFetcing = (isFetching) => ({ type: IS_FETCHING, isFetching: isFetching });
 export const toggleisDisabling = (disable, userId) => ({ type: TOGGLE_IS_DISABLING, disable, userId});
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    return(dispatch) => {
+                dispatch(toggleIsFetcing(true));
+                userAPI.getUsers(currentPage, pageSize)
+                    .then(data => {
+                dispatch(toggleIsFetcing(false));
+                dispatch(setUsers(data.items));
+                dispatch(setTotaUsersCount(data.totalCount));
+
+            })
+    }
+};
+export const changePageThankCreator = (pageNum, pageSize) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetcing(true));
+        dispatch(changeCurrentPage(pageNum));
+        userAPI.changeUser(pageNum, pageSize)
+            .then (data => {
+                dispatch(setUsers(data.items));
+                dispatch(toggleIsFetcing(false));
+            })
+    }
+};
+export const followThunkCreator = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleisDisabling(true, userId));
+        userAPI.deleteFollow(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(unfollowed(userId))
+                }
+                dispatch(toggleisDisabling(false, userId));
+            });
+    }
+};
+export const unFollowThunkCreator = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleisDisabling(true, userId));
+        userAPI.setFollow(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(followed(userId))
+                }
+                dispatch(toggleisDisabling(false, userId));
+            })
+    }
+}
 
 
 export default userReducer;

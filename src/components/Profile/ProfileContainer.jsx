@@ -1,23 +1,29 @@
 import React from 'react';
 import Profile from "./Profile";
-import * as axios from 'axios';
-import {SetPofileData} from "../../state/profile-reducer";
+import {getUserProfileDAL, SetPofileData} from "../../state/profile-reducer";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {profileAPI} from "../../api/api";
+import {toggleIsFetcing} from "../../state/users-reducer";
+
+
 
 
 class ProfileContainer extends React.Component {
 
 
     componentDidMount() {
-        let userId = this.props.match.params.userId;
+
+        let userId = this.props.match.params.userId; // используем для получения id пользователя см урок 60
         if(!userId) {
             userId = 12;
         }
-       axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + userId).then(respons => {
-
-           this.props.SetPofileData(respons.data)
-       })
+        this.props.getUserProfileDAL(userId);
+        /*this.props.toggleIsFetcing(true);
+        profileAPI.getUserProfile(userId).then(data => {  //делаем запрос на сервер
+            this.props.SetPofileData(data)
+       });
+        this.props.toggleIsFetcing(false);*/
     }
 
     render () {
@@ -32,9 +38,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
+
        SetPofileData(profile) {
            dispatch(SetPofileData(profile))
-       }
+       },
+        toggleIsFetcing(isFetching) {
+            dispatch(toggleIsFetcing(isFetching))
+        },
+        getUserProfileDAL(userId) {
+           dispatch(getUserProfileDAL(userId))
+        }
     }
 };
 

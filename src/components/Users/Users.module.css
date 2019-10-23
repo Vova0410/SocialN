@@ -91,7 +91,7 @@ h3 {
 
 .pages_inner {
     position: absolute;
-    left: 0; /*-2321*/
+    left: -1060px;
     height: 20px;
 }
 

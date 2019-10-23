@@ -16,25 +16,22 @@ export const userAPI = {
     },
     changeUser(pageNum, pageSize) {
         return instance.get(`users?page=${pageNum}&count=${pageSize}`).then(respons => respons.data)
-    }
-
-
-};
-
-export const followAPI = {
+    },
     deleteFollow(userId) {
         return instance.delete(`follow/${userId}`).then(respons => respons.data)
     },
     setFollow(userId) {
         return instance.post(`follow/${userId}`).then(respons => respons.data)
 
+    },
+    getUserProfile(userId) {
+        return instance.get(`profile/${userId}`).then(respons => respons.data)
     }
 };
 
-export const profileAPI = {};
 export const authAPI = {
-    getUsersAuthData() {
-        return instance.get(`auth/me`).then(respons => respons.data)
+     me() {
+        return instance.get(`auth/me`)
     }
 };
 

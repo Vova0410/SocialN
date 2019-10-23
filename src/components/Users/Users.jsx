@@ -54,27 +54,29 @@ const Users = (props) => {
                                     user.followed
                                         ? <button disabled={props.isDisabling.some(id => id === user.id)} className={classes.follow_button}
                                                   onClick={ () => {
-                                                      props.toggleisDisabling(true, user.id);
+                                                      props.followDAL(user.id);
+                                                      /*props.toggleisDisabling(true, user.id);
                                                       followAPI.deleteFollow(user.id)
                                                           .then(data => {
                                                               if (data.resultCode === 0) {
                                                                   props.unfollowed(user.id)
                                                               }
                                                               props.toggleisDisabling(false, user.id);
-                                                          });
+                                                          });*/
 
 
                                                   }}>unfollow</button>
                                         : <button disabled={props.isDisabling.some(id => id === user.id)} className={classes.unfollow_button}
                                                   onClick={ () => {
-                                                      props.toggleisDisabling(true, user.id);
+                                                      props.unFollowDAL(user.id)
+                                                      /*props.toggleisDisabling(true, user.id);
                                                       followAPI.setFollow(user.id)
                                                           .then(data => {
                                                               if (data.resultCode === 0) {
                                                                   props.followed(user.id)
                                                               }
                                                               props.toggleisDisabling(false, user.id);
-                                                          })
+                                                          })*/
 
                                                   }}>follow</button>
                                 }

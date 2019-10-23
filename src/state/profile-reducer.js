@@ -1,3 +1,5 @@
+import {toggleIsFetcing} from "./users-reducer";
+import {userAPI} from "../api/api";
 const ADD_POST = 'ADD-POST';
 const UP_DATE_POST = 'UP-DATE-POST';
 const SET_PROFILE_DATA = 'SET_PROFILE_DATA'
@@ -59,6 +61,16 @@ export const onPostChangeCreator = (newText) => {
 export const SetPofileData = (profile) => {
     return{type: SET_PROFILE_DATA, profile:profile }
 };
+
+export const getUserProfileDAL = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetcing(true));
+        userAPI.getUserProfile(userId).then(data => {  //делаем запрос на сервер
+            dispatch(SetPofileData(data))
+        });
+        dispatch(toggleIsFetcing(false));
+    }
+}
 
 
 export default profileReducer;
