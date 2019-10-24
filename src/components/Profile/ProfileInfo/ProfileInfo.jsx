@@ -35,7 +35,7 @@ const ProfileInfo = (props) => {
     return (
         <div className={classes.profileInfo_wrapper}>
             <div className={classes.content_header}>
-                <img src="http://www.fotoprizer.ru/img/290616-090500-ft.jpg"/>
+                <img src="http://www.fotoprizer.ru/img/290616-090500-ft.jpg" alt="backgroundPhoto"/>
                 <div className={classes.avatar_photo}>
                     <img src={props.profile.photos.large} alt="AvatarPhoto"/>
                 </div >

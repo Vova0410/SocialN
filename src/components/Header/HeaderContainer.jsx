@@ -9,7 +9,7 @@ import {connect} from "react-redux";
 class HeaderContainer extends React.Component {
 
     componentDidMount() {
-
+/*if()*/
         this.props.getUsersAuthDataDAL()
     }
 

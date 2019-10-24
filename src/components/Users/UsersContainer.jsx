@@ -1,12 +1,14 @@
 import React from 'react';
 import {
-    changeCurrentPage, followed, setUsers, toggleIsFetcing, setTotaUsersCount,
+    followed, setTotaUsersCount,
     unfollowed, toggleisDisabling, getUsersThunkCreator, changePageThankCreator, followThunkCreator,
     unFollowThunkCreator
 } from '../../state/users-reducer';
 import connect from 'react-redux/es/connect/connect';
 import Users from './Users';
 import Preloader from "../Preloader/Preloader";
+import {Redirect} from "react-router-dom";
+import {WithAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 class UsersApiContainer extends React.Component {
@@ -17,19 +19,10 @@ class UsersApiContainer extends React.Component {
 
     onPageChange(pageNum) {
         this.props.changePageDAL(pageNum, this.props.pageSize)
-        /*this.props.toggleIsFetcing(true);
-        this.props.changeCurrentPage(pageNum);
-        userAPI.changeUser(pageNum, this.props.pageSize)
-            .then (data => {
-            this.props.setUsers(data.items);
-            this.props.toggleIsFetcing(false);
-        })*/
     }
 
 
     render() {
-
-
         return <>
         {this.props.isFetching ? <Preloader /> : null}
 
@@ -45,13 +38,18 @@ class UsersApiContainer extends React.Component {
                toggleisDisabling = {this.props.toggleisDisabling}
                followDAL = {this.props.followDAL}
                unFollowDAL = {this.props.unFollowDAL}
-
-
         />
         </>
     }
 
 }
+let AuthRedirectComponent = WithAuthRedirect(UsersApiContainer);
+
+/*const mapStateToPropsForRedirect = (state) => ({
+    isAuth: state.auth.isAuth
+});
+
+AuthRedirectComponent = connect(mapStateToPropsForRedirect)(AuthRedirectComponent);*/
 
 const mapStateToProps = (state) => {
     return {
@@ -62,10 +60,34 @@ const mapStateToProps = (state) => {
         isFetching: state.usersPage.isFetching,
         isDisabling: state.usersPage.isDisabling,
 
-
-
     }
 };
+
+
+
+/*(props) => {
+    if(!props.isAuth) return <Redirect to="/login"/>
+    return <UsersApiContainer {...props}/>
+};*/
+
+const UsersContainer = connect(mapStateToProps,
+    {followed, setTotaUsersCount, unfollowed, toggleisDisabling,
+    getUsersDAL: getUsersThunkCreator, changePageDAL: changePageThankCreator,
+    followDAL: followThunkCreator, unFollowDAL: unFollowThunkCreator})(AuthRedirectComponent);
+
+export default UsersContainer;
+
+
+
+/*this.props.toggleIsFetcing(true);
+ this.props.changeCurrentPage(pageNum);
+ userAPI.changeUser(pageNum, this.props.pageSize)
+ .then (data => {
+ this.props.setUsers(data.items);
+ this.props.toggleIsFetcing(false);
+ })*/
+
+
 
 /*const mapDispatchToProps = (dispatch) => {
  return {
@@ -91,10 +113,3 @@ const mapStateToProps = (state) => {
  }
  }
  };*/
-
-const UsersContainer = connect(mapStateToProps,
-    {followed, setTotaUsersCount, unfollowed, toggleisDisabling,
-    getUsersDAL: getUsersThunkCreator, changePageDAL: changePageThankCreator,
-    followDAL: followThunkCreator, unFollowDAL: unFollowThunkCreator})(UsersApiContainer);
-
-export default UsersContainer;

@@ -2,8 +2,6 @@ import React from 'react';
 import classes from './Users.module.css';
 import userPhoto from '../../img/empty.png';
 import {NavLink} from "react-router-dom";
-import * as axios from 'axios';
-import {followAPI} from "../../api/api";
 
 
 const Users = (props) => {
@@ -22,7 +20,7 @@ const Users = (props) => {
                     {
                         pages.map((p) => {
                             return (
-                                <span
+                                <span key={p}
                                     className={(props.currentPage === p) ? classes.selectedPage : classes.unselectedPage}
                                     onClick={(e) => {
                                         props.onPageChange(p)
