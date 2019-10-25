@@ -9,6 +9,7 @@ import Users from './Users';
 import Preloader from "../Preloader/Preloader";
 import {Redirect} from "react-router-dom";
 import {WithAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 class UsersApiContainer extends React.Component {
@@ -43,13 +44,6 @@ class UsersApiContainer extends React.Component {
     }
 
 }
-let AuthRedirectComponent = WithAuthRedirect(UsersApiContainer);
-
-/*const mapStateToPropsForRedirect = (state) => ({
-    isAuth: state.auth.isAuth
-});
-
-AuthRedirectComponent = connect(mapStateToPropsForRedirect)(AuthRedirectComponent);*/
 
 const mapStateToProps = (state) => {
     return {
@@ -63,20 +57,24 @@ const mapStateToProps = (state) => {
     }
 };
 
+export default compose(
+    connect(mapStateToProps, {followed, setTotaUsersCount, unfollowed, toggleisDisabling,
+            getUsersDAL: getUsersThunkCreator, changePageDAL: changePageThankCreator,
+            followDAL: followThunkCreator, unFollowDAL: unFollowThunkCreator}),
+    WithAuthRedirect
+)(UsersApiContainer)
 
 
-/*(props) => {
-    if(!props.isAuth) return <Redirect to="/login"/>
-    return <UsersApiContainer {...props}/>
-};*/
 
-const UsersContainer = connect(mapStateToProps,
-    {followed, setTotaUsersCount, unfollowed, toggleisDisabling,
-    getUsersDAL: getUsersThunkCreator, changePageDAL: changePageThankCreator,
-    followDAL: followThunkCreator, unFollowDAL: unFollowThunkCreator})(AuthRedirectComponent);
 
+
+/*
+let AuthRedirectComponent = WithAuthRedirect(UsersApiContainer);
+const UsersContainer = connect(mapStateToProps, {followed, setTotaUsersCount, unfollowed, toggleisDisabling,
+        getUsersDAL: getUsersThunkCreator, changePageDAL: changePageThankCreator,
+        followDAL: followThunkCreator, unFollowDAL: unFollowThunkCreator})(AuthRedirectComponent);
 export default UsersContainer;
-
+*/
 
 
 /*this.props.toggleIsFetcing(true);

@@ -4,29 +4,14 @@ import {addMessageCreator, onMessageChangeCreator} from '../../state/dialog-redu
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {WithAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
-
-let AuthRedirectComponent = WithAuthRedirect(Dialogs);
-
-/*
-const mapStateToPropsForRedirect= (state) => ({
-    isAuth: state.auth.isAuth
-});
-AuthRedirectComponent = connect(mapStateToPropsForRedirect)(AuthRedirectComponent);
-*/
-
-/*(props) => {
-    if(!props.isAuth) return <Redirect to={"/login"}/>
-    return <Dialogs {...props}/>
-};*/
 
 let mapStateToProps = (state) => {
     return {
         dialogs: state.messagePage.dialogs,
         messages: state.messagePage.messages,
         newMessageVal: state.messagePage.newMessageVal,
-
-
     }
 };
 
@@ -38,25 +23,36 @@ let mapDispatchToProps = (dispatch) => {
         upDateMessageChange: (newMess) => {
             dispatch(onMessageChangeCreator(newMess))
         }
-
     }
 };
 
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    WithAuthRedirect
+)(Dialogs)
+
+
+/*let AuthRedirectComponent = WithAuthRedirect(Dialogs);
 const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
-
-export default DialogsContainer;
-
+export default DialogsContainer;*/
 
 
+/*
+ const mapStateToPropsForRedirect= (state) => ({
+ isAuth: state.auth.isAuth
+ });
+ AuthRedirectComponent = connect(mapStateToPropsForRedirect)(AuthRedirectComponent);
+ */
 
-
+/*(props) => {
+ if(!props.isAuth) return <Redirect to={"/login"}/>
+ return <Dialogs {...props}/>
+ };*/
 
 
 
 /*const DialogsContainer = (props) => {
-
-
- return (
+  return (
  <MyContext.Consumer>
  {(store) => {
  let state = store.getState();
