@@ -11,7 +11,7 @@ const Profile = (props) => {
 
     return(
         <div className={classes.profile_wrapper}>
-            <ProfileInfo profile={props.profile} />
+            <ProfileInfo profile={props.profile} status={props.status} upDateStateDAL={props.upDateStateDAL}/>
             <MyPostsComponent />
 
         </div>

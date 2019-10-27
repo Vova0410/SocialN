@@ -1,8 +1,10 @@
 import {toggleIsFetcing} from "./users-reducer";
-import {userAPI} from "../api/api";
+import {profileAPI, userAPI} from "../api/api";
 const ADD_POST = 'ADD-POST';
 const UP_DATE_POST = 'UP-DATE-POST';
-const SET_PROFILE_DATA = 'SET_PROFILE_DATA'
+const SET_PROFILE_DATA = 'SET_PROFILE_DATA';
+const SET_USER_STATUS = 'GET_USER_STATUS';
+
 
 let initialState = {
     posts: [
@@ -13,7 +15,8 @@ let initialState = {
         {id: 5, post: "Hi, haw are you?", likesCount: 121},
     ],
     newPostText: '',
-    profile: null
+    profile: null,
+    status: ''
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -44,13 +47,18 @@ const profileReducer = (state = initialState, action) => {
                 ...state, profile: action.profile
             };
 
-
+        case SET_USER_STATUS:
+            return {
+                ...state, status: action.status
+            };
 
         default:
             return state;
     }
 };
 
+
+//fctio creaters
 export const addPostCreator = () => {
     return {type: ADD_POST};
 };
@@ -59,9 +67,15 @@ export const onPostChangeCreator = (newText) => {
     return {type: UP_DATE_POST, newText: newText};
 };
 export const SetPofileData = (profile) => {
-    return{type: SET_PROFILE_DATA, profile:profile }
+    return{type: SET_PROFILE_DATA, profile: profile }
+};
+export const setUserStatusAC = (status) => {
+    return {type: SET_USER_STATUS, status: status}
 };
 
+
+
+// thunk
 export const getUserProfileDAL = (userId) => {
     return (dispatch) => {
         dispatch(toggleIsFetcing(true));
@@ -70,7 +84,23 @@ export const getUserProfileDAL = (userId) => {
         });
         dispatch(toggleIsFetcing(false));
     }
-}
+};
+export const getUserStatusDAL = (userId) => {
+    return (dispatch) => {
+        profileAPI.getStatus(userId).then(respons => {
+            dispatch(setUserStatusAC(respons.data))
+        })
+    }
+};
+export const upDateStateDAL = (status) => {
+    return (dispatch) => {
+        profileAPI.upDateStatus(status).then(respons => {
+            if(respons.resultCode === 0) {
+                dispatch(setUserStatusAC(status))
+            }
+        })
+    }
+};
 
 
 export default profileReducer;

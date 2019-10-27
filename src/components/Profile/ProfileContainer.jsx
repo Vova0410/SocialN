@@ -1,6 +1,6 @@
 import React from 'react';
 import Profile from "./Profile";
-import {getUserProfileDAL, SetPofileData} from "../../state/profile-reducer";
+import {getUserProfileDAL, SetPofileData, getUserStatusDAL, upDateStateDAL} from "../../state/profile-reducer";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {toggleIsFetcing} from "../../state/users-reducer";
@@ -16,9 +16,11 @@ class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId; // используем для получения id пользователя см урок 60
         if(!userId) {
-            userId = 12;
+            userId = 4948;
         }
-        this.props.getUserProfileDAL(userId);
+        this.props.getUserProfileDAL(userId); // thunk from profile-reducer.js
+        this.props.getUserStatusDAL(userId);  // thunk from profile-reducer.js
+
     }
 
     render () {
@@ -27,7 +29,10 @@ class ProfileContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return{ profile: state.profilePage.profile }
+    return{
+        profile: state.profilePage.profile,
+        status: state.profilePage.status
+    }
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -41,6 +46,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         getUserProfileDAL(userId) {
            dispatch(getUserProfileDAL(userId))
+        },
+        getUserStatusDAL(userId) {
+            dispatch(getUserStatusDAL(userId))
+        },
+        upDateStateDAL(status) {
+            dispatch(upDateStateDAL(status))
         }
     }
 };
@@ -49,7 +60,7 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     withRouter,
-    WithAuthRedirect
+    WithAuthRedirect,
 )(ProfileContainer)
 
 /*                               code deleted as a result of creation 'compose'
