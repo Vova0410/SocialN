@@ -1,0 +1,13 @@
+.error textarea {
+     border:  5px solid red;
+ }
+
+.error input {
+    border:  1px solid red;
+    background-color: #EEBBB7;
+}
+
+.formControl.error span {
+    color: red;
+    font-weight: 500;
+}

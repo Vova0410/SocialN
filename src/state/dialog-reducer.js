@@ -1,5 +1,5 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UP_DATE_MESSAGE ='UP-DATE-MESSAGE';
+
 
 let initialState = {
     dialogs: [
@@ -20,7 +20,7 @@ let initialState = {
         {id: 5, message: "Hi1@@@@@@@@@@2"},
         {id: 6, message: "Hi2222222222"},
     ],
-    newMessageVal: ''
+
 };
 
 const dialogReducer = (state = initialState, action) => {
@@ -29,49 +29,39 @@ const dialogReducer = (state = initialState, action) => {
 
             let newMessageText = {
                 id: 7,
-                message: state.newMessageVal
+                message: action.newMessageVal
             };
             return {
                 ...state,
                 messages: [...state.messages, newMessageText],
-                newMessageVal: ''
+
             }
         }
-        case UP_DATE_MESSAGE:{
-            return {
-                ...state,
-                newMessageVal: action.newMess
-            };
-        }
         default: return state;
-
-
     }
-
-    /*if( action.type === ADD_MESSAGE ) {
-        let newMessageText = {
-            id: 7,
-            message: state.newMessageVal
-        };
-        state.messages.push(newMessageText);
-        state.newMessageVal = ''; // обнуляем
-
-    }
-
-    else if( action.type === UP_DATE_MESSAGE ) {
-        state.newMessageVal = action.newMess;
-
-    }
-
-    return state;*/
 };
 
-export const addMessageCreator = () => {
-    return { type: ADD_MESSAGE };
+export const addMessageCreator = (newMessageVal) => {
+    return { type: ADD_MESSAGE, newMessageVal: newMessageVal };
 };
 
-export const onMessageChangeCreator = (newMess) => {
-  return { type: UP_DATE_MESSAGE, newMess: newMess}
-};
 
  export default dialogReducer;
+
+
+/*if( action.type === ADD_MESSAGE ) {
+ let newMessageText = {
+ id: 7,
+ message: state.newMessageVal
+ };
+ state.messages.push(newMessageText);
+ state.newMessageVal = ''; // обнуляем
+
+ }
+
+ else if( action.type === UP_DATE_MESSAGE ) {
+ state.newMessageVal = action.newMess;
+
+ }
+
+ return state;*/

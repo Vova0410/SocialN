@@ -1,7 +1,8 @@
 import {toggleIsFetcing} from "./users-reducer";
 import {profileAPI, userAPI} from "../api/api";
+
 const ADD_POST = 'ADD-POST';
-const UP_DATE_POST = 'UP-DATE-POST';
+
 const SET_PROFILE_DATA = 'SET_PROFILE_DATA';
 const SET_USER_STATUS = 'GET_USER_STATUS';
 
@@ -25,22 +26,18 @@ const profileReducer = (state = initialState, action) => {
 
             let newPost = {
                 id: 6,
-                post: state.newPostText,
+                post: action.newPostText,
                 likesCount: 0
             };
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText: ''
+
             };
 
 
 
-        case UP_DATE_POST:
-            return {
-                ...state,
-                newPostText: action.newText
-            };
+
 
         case SET_PROFILE_DATA:
             return {
@@ -58,14 +55,12 @@ const profileReducer = (state = initialState, action) => {
 };
 
 
-//fctio creaters
-export const addPostCreator = () => {
-    return {type: ADD_POST};
+//function creaters
+export const addPostCreator = (newPostText) => {
+    return {type: ADD_POST, newPostText: newPostText};
 };
 
-export const onPostChangeCreator = (newText) => {
-    return {type: UP_DATE_POST, newText: newText};
-};
+
 export const SetPofileData = (profile) => {
     return{type: SET_PROFILE_DATA, profile: profile }
 };
@@ -95,7 +90,7 @@ export const getUserStatusDAL = (userId) => {
 export const upDateStateDAL = (status) => {
     return (dispatch) => {
         profileAPI.upDateStatus(status).then(respons => {
-            if(respons.resultCode === 0) {
+            if(respons.data.resultCode === 0) {
                 dispatch(setUserStatusAC(status))
             }
         })
@@ -104,3 +99,17 @@ export const upDateStateDAL = (status) => {
 
 
 export default profileReducer;
+
+
+
+/*const UP_DATE_POST = 'UP-DATE-POST';*/
+
+/*case UP_DATE_POST:
+ return {
+ ...state,
+ newPostText: action.newText
+ };*/
+
+/*export const onPostChangeCreator = (newText) => {
+ return {type: UP_DATE_POST, newText: newText};
+ };*/
