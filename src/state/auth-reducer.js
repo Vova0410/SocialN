@@ -6,7 +6,8 @@ let initialState = {
     id: null,
     login: null,
     email: null,
-    isAuth: false
+    isAuth: false,
+
 
 };
 
@@ -16,28 +17,55 @@ const authReducer = (state = initialState, action) => {
         case SET_AUTH_USERS_DATA:
             return {
                 ...state,
-                ...action.UserData,
-                isAuth: true
-            }
+                ...action.UserData
+
+            };
     }
     return state;
 };
 
-export const setAuthUsersData = (id, login, email) => ({
-    type: SET_AUTH_USERS_DATA, UserData: {id, login, email}
+
+// action creators
+export const setAuthUsersData = (id, login, email, isAuth) => ({
+    type: SET_AUTH_USERS_DATA, UserData: {id, login, email, isAuth}
 });
 
+
+
+
+//thunk
 export const getUsersAuthDataDAL = () => {
- return (dispatch) => {
- authAPI.me().then(respons => {
- if (respons.data.resultCode === 0) {
- dispatch(setAuthUsersData(respons.data.data.id, respons.data.data.login, respons.data.data.email));
- }
+    return (dispatch) => {
+        authAPI.me().then(respons => {
+            if (respons.data.resultCode === 0) {
+                dispatch(setAuthUsersData(respons.data.data.id, respons.data.data.login, respons.data.data.email, true));
+            }
 
- })
- }
- }
+        })
+    }
+};
 
+export const loginDAL = (email, password, rememberMe) => (dispatch) => {
+    return (
+        authAPI.login(email, password, rememberMe).then(respons => {
+            if (respons.data.resultCode === 0) {
+                dispatch(getUsersAuthDataDAL())
+            }
+
+        })
+    )
+};
+
+export const logOutDAL = () => (dispatch) => {
+    return (
+        authAPI.logout().then(respons => {
+            if (respons.data.resultCode === 0) {
+                dispatch(setAuthUsersData(null, null, null, false))
+            }
+
+        })
+    )
+};
 
 export default authReducer;
 

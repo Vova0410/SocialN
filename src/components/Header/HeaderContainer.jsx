@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from "./Header";
-import {getUsersAuthDataDAL, setAuthUsersData} from "../../state/auth-reducer";
+import {getUsersAuthDataDAL, logOutDAL, setAuthUsersData} from "../../state/auth-reducer";
 import {connect} from "react-redux";
 
 
@@ -31,6 +31,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         getUsersAuthDataDAL(id, login, email) {
             dispatch(getUsersAuthDataDAL(id, login, email))
+        },
+        logOutL(){
+            dispatch(logOutDAL())
         }
     }
 }

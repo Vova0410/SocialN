@@ -1,0 +1,14 @@
+.friendsData_wrapper {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    background: #ffffff;
+}
+
+.friendsPhoto {
+    width: 100%;
+}
+
+.friendsPhoto img {
+    width: 98%;
+}
