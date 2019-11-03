@@ -1,0 +1,61 @@
+.piDescription_wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+}
+
+.piDescription_fullName {
+    display: flex;
+}
+
+.piDescription_fullName__img img {
+    width: 80px;
+    border-radius: 100%;
+}
+
+.piDescription_fullName h2 {
+    padding-left: 40px;
+}
+.loockingJob_wrapper {
+    margin-top: 30px;
+}
+
+.loockingJob_content {
+    display: flex;
+    flex-direction: column;
+}
+.loockingJob_content__discription {
+    line-height:50px
+}
+
+.loockingJob_content__img img {
+    min-width: 100%;
+}
+
+.piDescription_aboutMe {
+    margin-top: 30px;
+}
+
+.contacts_wrapper {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact {
+    margin-top: 10px;
+}
+
+.contact span{
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+.formButton {
+    margin-top: 20px;
+
+}
+.textArea textarea{
+    width: 90%;
+    min-height: 150px;
+}

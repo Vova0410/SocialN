@@ -13,10 +13,11 @@ import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
 
+
     componentDidMount() {
         let userId = this.props.match.params.userId; // используем для получения id пользователя см урок 60
         if(!userId) {
-            userId = 4948;
+            userId = this.props.meId;
         }
         this.props.getUserProfileDAL(userId); // thunk from profile-reducer.js
         this.props.getUserStatusDAL(userId);  // thunk from profile-reducer.js
@@ -31,7 +32,8 @@ class ProfileContainer extends React.Component {
 const mapStateToProps = (state) => {
     return{
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        meId: state.auth.id
     }
 };
 

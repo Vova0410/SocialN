@@ -1,5 +1,43 @@
 .profile_wrapper {
     display: flex;
     flex-direction: column;
-
 }
+
+.Profile_content_wrapper {
+    min-width: 900px;
+    display: flex;
+    margin-top: 40px;
+    justify-content: space-between;
+}
+
+.friends_items {
+    width: 35%;
+    min-width: 268px;
+    overflow: hidden;
+}
+
+.friends_wrapper {
+    background: #ffffff;
+    width:  280px;
+    border: 1px solid #C5C7CA;
+}
+.friends_wrapper p{
+    margin-top: 0;
+}
+
+.friendData_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.posts_items {
+    width: 100%;
+    padding-left: 30px;
+    background: #fff;
+    border: 1px solid #C5C7CA;
+}
+
+
+
+

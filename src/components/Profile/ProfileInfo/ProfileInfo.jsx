@@ -8,6 +8,9 @@ const ProfileInfo = (props) => {
     if (!props.profile) {
         return <Preloader />
     }
+
+    let isOwner = () => (props.meId === props.profile.userId) ? true : false ;
+
     return (
 
         <div className={classes.profileInfo_wrapper}>
@@ -17,7 +20,7 @@ const ProfileInfo = (props) => {
                     <img src={props.profile.photos.large} alt="AvatarPhoto"/>
                 </div >
                 <div className={classes.fullName}>{props.profile.fullName}</div>
-                <div className={classes.status}><ProfileStatus status={props.status}
+                <div className={classes.status}><ProfileStatus isOwner={isOwner} status={props.status}
                                                                upDateStateDAL={props.upDateStateDAL}/></div>
             </div>
         </div>
@@ -25,6 +28,8 @@ const ProfileInfo = (props) => {
 
     )
 };
+
+
 
 export default ProfileInfo;
 

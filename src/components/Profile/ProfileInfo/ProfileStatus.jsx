@@ -3,12 +3,17 @@ import classes from './ProfileStatus.module.css'
 
 
 class ProfileStatus extends React.Component {
+
+
     state = {
         editMode: false,
         status: this.props.status,
     };
     activateEditMode = () => {
-        this.setState({editMode: true})
+        if(this.props.isOwner()) {
+            this.setState({editMode: true})
+        }
+
     };
 
     deActivateEditMode =() => {
@@ -18,13 +23,15 @@ class ProfileStatus extends React.Component {
     onChangeInput = (e) => {
         this.setState({
             status: e.currentTarget.value
-        })
+        });
+
     };
     componentDidUpdate(prevProps, prevState) {
         if(prevProps.status !== this.props.status) {
             this.setState({status: this.props.status})
         }
-        console.log("componentDidUpdate")
+        console.log("componentDidUpdate");
+        console.log(this.props.isOwner());
     }
 
     render() {

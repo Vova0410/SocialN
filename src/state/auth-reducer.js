@@ -34,16 +34,14 @@ export const setAuthUsersData = (id, login, email, isAuth) => ({
 
 
 //thunk
-export const getUsersAuthDataDAL = () => {
-    return (dispatch) => {
-        authAPI.me().then(respons => {
+export const getUsersAuthDataDAL = () => (dispatch) => {
+       return authAPI.me().then(respons => {
             if (respons.data.resultCode === 0) {
                 dispatch(setAuthUsersData(respons.data.data.id, respons.data.data.login, respons.data.data.email, true));
             }
 
         })
-    }
-};
+    };
 
 export const loginDAL = (email, password, rememberMe) => (dispatch) => {
     return (

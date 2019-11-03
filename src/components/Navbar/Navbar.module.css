@@ -1,10 +1,20 @@
 .nav {
-    grid-area: n;
-    background-color: #AEE6EC;
+    display: flex;
+    justify-content: flex-end;
+    height: 30px;
+    background-color: #F4F6F9;
+    min-width: 900px;
+
+}
+
+.itemWrapper{
+    display: flex;
+    width: 300px;
+    justify-content: space-around;
 }
 
 .item a{
-     color: white;
+     color: #000;
  }
 .item a.active {
     color: gold;

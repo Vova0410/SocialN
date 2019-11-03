@@ -1,62 +1,38 @@
 import React from 'react';
 import userPhoto from '../../img/empty.png';
 import classes from './Friends.module.css';
+import {NavLink} from "react-router-dom";
 
 
-class Friends extends React.Component {
 
-    render() {
-        return (
-            <>
-            <p>FRIENDS</p>
-            <div className={classes.friendsData_wrapper}>
+const Friends = (props) => {
+    return (
 
-                <div>
-                    <div className={classes.friendsPhoto}>
-                        <img src={userPhoto} alt="friend"/>
-                    </div>
-                    <p className={classes.friendsName}>Users name </p>
-                </div>
+            <div className={classes.friendsData_item}>
 
-                <div>
-                <div className={classes.friendsPhoto}>
-                    <img src={userPhoto} alt="friend"/>
-                </div>
-                <p className={classes.friendsName}>Users name </p>
+                {
+                    props.friends.map((friend) => {
+                        return (
+                            <div key={friend.id} >
+
+                                <div className={classes.friendsPhoto}>
+                                    <NavLink to={"/profile/" + friend.id}
+                                             onClick={e => props.getUserProfileDAL(friend.id)}>
+                                        <img src={friend.photos.large || userPhoto} alt="friend"/>
+                                    </NavLink>
+                                </div>
+
+                                <div className={classes.friendsName}>{friend.name} </div>
+                            </div>
+                        )
+                    })
+                }
             </div>
+    )
 
-                <div>
-                    <div className={classes.friendsPhoto}>
-                        <img src={userPhoto} alt="friend"/>
-                    </div>
-                    <p className={classes.friendsName}>Users name </p>
-                </div>
+};
 
-                <div>
-                    <div className={classes.friendsPhoto}>
-                        <img src={userPhoto} alt="friend"/>
-                    </div>
-                    <p className={classes.friendsName}>Users name </p>
-                </div>
 
-                <div>
-                    <div className={classes.friendsPhoto}>
-                        <img src={userPhoto} alt="friend"/>
-                    </div>
-                    <p className={classes.friendsName}>Users name </p>
-                </div>
 
-                <div>
-                    <div className={classes.friendsPhoto}>
-                        <img src={userPhoto} alt="friend"/>
-                    </div>
-                    <p className={classes.friendsName}>Users name </p>
-                </div>
-
-            </div>
-            </>
-        )
-
-    }
-}
 export default Friends;
+

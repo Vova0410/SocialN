@@ -1,20 +1,35 @@
 a {
   text-decoration: none;
 }
-
 .app_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   min-height: 100vh;
-  display: grid;
-  grid-template-areas:
-          "h h"
-          "n c";
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
-}
-
-.app_wrapper_content {
-  grid-area: c;
   background-color: #E9EBEE;
 }
+.app_header{
+  width: 100%;
+}
 
+.app_content {
+  display: flex;
+  width: 70%;
+  min-width: 700px;
+  justify-content: space-between;
+
+}
+
+.navbar_wrapper {
+  min-width: 700px;
+}
+
+.content_container {
+  width: 100%;
+}
+
+#main_content {
+  width: 100%;
+}
 

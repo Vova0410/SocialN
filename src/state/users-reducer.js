@@ -10,9 +10,9 @@ const TOGGLE_IS_DISABLING = 'TOGGLE_IS_DISABLING';
 
 let initialState = {
     users: [],
-    pageSize: 20,
-    totalUsersCount: 16,
-    currentPage: 45,
+    pageSize: 90,
+    totalUsersCount: 1100,
+    currentPage: 10,
     isFetching: true,
     isDisabling: []
 
@@ -74,6 +74,8 @@ const userReducer = (state = initialState, action) => {
     return state
 };
 
+
+//action creators
 export const followed = (userId) => ({ type: FOLLOWED, userId});
 export const unfollowed = (userId) => ({ type: UNFOLLOWED, userId});
 export const setUsers = (users) => ({ type: SET_USERS, users });
@@ -82,6 +84,7 @@ export const changeCurrentPage = (currentPage) => ({type: CHANGE_CURRENT_PAGE, c
 export const toggleIsFetcing = (isFetching) => ({ type: IS_FETCHING, isFetching: isFetching });
 export const toggleisDisabling = (disable, userId) => ({ type: TOGGLE_IS_DISABLING, disable, userId});
 
+//thunks
 export const getUsersThunkCreator = (currentPage, pageSize) => {
     return(dispatch) => {
                 dispatch(toggleIsFetcing(true));
@@ -128,7 +131,7 @@ export const unFollowThunkCreator = (userId) => {
                 dispatch(toggleisDisabling(false, userId));
             })
     }
-}
+};
 
 
 export default userReducer;

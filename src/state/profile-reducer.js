@@ -2,7 +2,6 @@ import {toggleIsFetcing} from "./users-reducer";
 import {profileAPI, userAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
-
 const SET_PROFILE_DATA = 'SET_PROFILE_DATA';
 const SET_USER_STATUS = 'GET_USER_STATUS';
 
@@ -34,10 +33,6 @@ const profileReducer = (state = initialState, action) => {
                 posts: [...state.posts, newPost],
 
             };
-
-
-
-
 
         case SET_PROFILE_DATA:
             return {
