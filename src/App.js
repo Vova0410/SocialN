@@ -42,7 +42,6 @@ class App extends React.Component {
                         </div>
 
                         <div id='main_content'>
-
                             <Route path='/profile/:userId?' render={ () => <ProfileContainer  />} /> {/*//? в конце адреса улает адрес опциональным, не обязательным.*/}
                             <Route path='/dialogs' render={ () => <DialogsContainer  /> } />
                             <Route path='/users' render={ () => <UsersContainer /> } />
@@ -50,7 +49,7 @@ class App extends React.Component {
                             <Route path='/news' component={News}/>
                             <Route path="/music" component={Music}/>
                             <Route path="/settings" component={Settings}/>
-                            <Route path="/login" component={Login}/>
+                            <Route path="/" render={ () => <Login/>}/>
 
                         </div>
                     </div>
