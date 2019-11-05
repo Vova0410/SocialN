@@ -75,3 +75,15 @@
     text-shadow: 1px 1px 4px black;
 }
 
+.ProfileSettings {
+    position: absolute;
+    z-index: 5;
+}
+
+.ProfileSettings input {
+    width:72px;
+
+
+
+}
+

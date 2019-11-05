@@ -10,6 +10,10 @@ import Preloader from "../Preloader/Preloader";
 import {Redirect} from "react-router-dom";
 import {WithAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage, getisDisabling, getIsFetching, getPageSize, getTotalUsersCount,
+    getUsers
+} from "../../state/users-selectors";
 
 
 class UsersApiContainer extends React.Component {
@@ -46,16 +50,30 @@ class UsersApiContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+ return {
+ users: state.usersPage.users,
+ pageSize: state.usersPage.pageSize,
+ totalUsersCount: state.usersPage.totalUsersCount,
+ currentPage: state.usersPage.currentPage,
+ isFetching: state.usersPage.isFetching,
+ isDisabling: state.usersPage.isDisabling,
+
+ }
+ };
+
+/*
+const mapStateToProps = (state) => { // use selectors from users-selectors.js
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        isDisabling: state.usersPage.isDisabling,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        isDisabling: getisDisabling(state),
 
     }
 };
+*/
 
 export default compose(
     connect(mapStateToProps, {followed, setTotaUsersCount, unfollowed, toggleisDisabling,

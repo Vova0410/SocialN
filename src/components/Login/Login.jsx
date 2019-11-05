@@ -9,7 +9,7 @@ import {Redirect} from "react-router-dom";
 let LoginForm = (props) => {
     const { handleSubmit } = props;
     return(
-        <form onSubmit={handleSubmit}>
+        <form name="login" onSubmit={handleSubmit}>
             <div>
                 <Field name="Email"  type="text" placeholder="Email" component={Input} validate={[required, maxLength22]}/>
             </div>

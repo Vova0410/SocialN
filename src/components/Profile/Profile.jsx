@@ -15,9 +15,9 @@ const Profile = (props) => {
     return (
         <div className={classes.profile_wrapper}>
             <div className={classes.profile_info_wrapper}>
-                <ProfileInfo meId={props.meId} profile={props.profile} status={props.status} upDateStateDAL={props.upDateStateDAL}/>
+                <ProfileInfo savePhoto={props.savePhoto} meId={props.meId} profile={props.profile} status={props.status} upDateStateDAL={props.upDateStateDAL}/>
             </div>
-            <div className={classes.Profile_content_wrapper}>
+            <div className={classes.profile_content_wrapper}>
                 <div className={classes.friends_items}>
                     <div className={classes.friends_wrapper}>
                         <p>FRIENDS</p>
@@ -27,7 +27,7 @@ const Profile = (props) => {
                     </div>
                 </div>
                 <div className={classes.posts_items}>
-                    <ProfileInfoDescription meId={props.meId} profile={props.profile} status={props.status}/>
+                    <ProfileInfoDescription meId={props.meId} profile={props.profile} status={props.status} saveProfile={props.saveProfile}/>
                 </div>
             </div>
         </div>

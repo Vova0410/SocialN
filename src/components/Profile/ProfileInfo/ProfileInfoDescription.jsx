@@ -14,13 +14,17 @@ class ProfileInfoDescription extends React.Component {
     activateEditMode = () => {
         this.setState({editMode: true})
     };
+    deactivateEditMode = () => {
+        this.setState({editMode: false})
+    };
     render() {
         if (!this.props.profile) {
             return <Preloader />
         }
 
         let isOwner = () => (this.props.meId === this.props.profile.userId) ? true : false;
-        if(this.state.editMode) {return <ProfileForm {...this.props}/>}
+
+        if(this.state.editMode) {return <ProfileForm deactivateEditMode={this.deactivateEditMode}  profile={this.props.profile} saveProfile={this.props.saveProfile}/>}
         return (
 
             <div className={classes.piDescription_wrapper}>
@@ -33,7 +37,12 @@ class ProfileInfoDescription extends React.Component {
                     <h2>{this.props.profile.fullName}</h2>
                 </div>
                 <div className={classes.piDescription_aboutMe}>
-                    <b>About me:</b> {this.props.profile.aboutMe}
+                    <div>
+                        <b>About me:</b>
+                    </div>
+                    <div>
+                        {this.props.profile.aboutMe}
+                    </div>
                 </div>
                 <div className={classes.loockingJob_wrapper}>
                     <div>

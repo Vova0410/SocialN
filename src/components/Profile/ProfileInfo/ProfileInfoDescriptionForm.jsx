@@ -5,7 +5,7 @@ import {Field, reduxForm} from "redux-form";
 let ProfileInfoDescriptionForm = (props) => {
     const { handleSubmit } = props;
     return (
-        <form onSubmit={handleSubmit}>
+        <form name="edit-form" onSubmit={handleSubmit}>
             <div className={classes.piDescription_wrapper}>
 
                 <div>
@@ -26,27 +26,27 @@ let ProfileInfoDescriptionForm = (props) => {
                 </div>
                 <div className={classes.loockingJob_wrapper}>
                     <div>
-                        <Field name="LoockingJobCeck"  type="checkbox" placeholder="Your skills" component="input"/><b>Loocking for a job:</b>
+                        <Field name="lookingForAJob"  type="checkbox" placeholder="Your skills" component="input"/><b>Loocking for a job:</b>
                     </div>
                     <div>
-                        <Field name="LoockingJob"  type="text" placeholder="LoockingJob" component="input"/>
+                        <Field name="lookingForAJobDescription"  type="text" placeholder="lookingForAJob" component="input"/>
                     </div>
                 </div>
                 <div className={classes.contacts_wrapper}>
-                    <div>
-                        <b>My Contacts:</b>
-                    </div>
-                    <div className={classes.contacts_wrapper}>
-                        {
-                            Object.keys(props.profile.contacts).map(key => {
-                            return <div key={key}>
-                                <Field name={key}  type="text" placeholder={key} component="input"/>
-                                </div>
-                            })
-                        }
-                    </div>
+             <div>
+             <b>My Contacts:</b>
+             </div>
+             <div className={classes.contacts_wrapper}>
+             {
+             Object.keys(props.profile.contacts).map(key => {
+             return <div key={key}>
+             <Field name={"contacts." + key}  type="text" placeholder={key} component="input"/>
+             </div>
+             })
+             }
+             </div>
 
-                </div>
+             </div>
                 <div className={classes.formButton}>
                     <button>Send</button>
                 </div>
@@ -61,9 +61,10 @@ ProfileInfoDescriptionForm = reduxForm({ //скопировал с библио�
 
 const ProfileForm = (props) => {
     const onSubmit = formData => {
-        console.log(formData)
+        props.saveProfile(formData);
+        props.deactivateEditMode();
     };
-    return <ProfileInfoDescriptionForm profile={props.profile} onSubmit={onSubmit}/>
+    return <ProfileInfoDescriptionForm initialValues={props.profile} profile={props.profile} onSubmit={onSubmit} />
 };
 
 export default ProfileForm;

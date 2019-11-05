@@ -4,6 +4,8 @@ import {profileAPI, userAPI} from "../api/api";
 const ADD_POST = 'ADD-POST';
 const SET_PROFILE_DATA = 'SET_PROFILE_DATA';
 const SET_USER_STATUS = 'GET_USER_STATUS';
+const SAVE_PHOTO_AC = 'SAVE_PHOTO_AC';
+
 
 
 let initialState = {
@@ -43,6 +45,13 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state, status: action.status
             };
+        case SAVE_PHOTO_AC:
+            return {
+                ...state, profile: {
+                    ...state.profile, photos: action.photoFile
+                }
+            };
+
 
         default:
             return state;
@@ -54,14 +63,17 @@ const profileReducer = (state = initialState, action) => {
 export const addPostCreator = (newPostText) => {
     return {type: ADD_POST, newPostText: newPostText};
 };
-
-
 export const SetPofileData = (profile) => {
     return{type: SET_PROFILE_DATA, profile: profile }
 };
 export const setUserStatusAC = (status) => {
     return {type: SET_USER_STATUS, status: status}
 };
+export const savePhotoAC = (photoFile) => {
+    return {type: SAVE_PHOTO_AC, photoFile: photoFile}
+};
+
+
 
 
 
@@ -91,7 +103,25 @@ export const upDateStateDAL = (status) => {
         })
     }
 };
-
+export const saveProfileDAL = (profile) => {
+    return (dispatch, getState) => {
+        const userId = getState().auth.id;
+        profileAPI.setProfile(profile).then( respons => {
+            if(respons.data.resultCode === 0) {
+                dispatch(getUserProfileDAL(userId))
+            }
+        })
+    }
+};
+export const savePhotoDAL = (photoFile) => {
+    return dispatch => {
+        profileAPI.savePhotoApi(photoFile).then(respons => {
+            if(respons.data.resultCode === 0) {
+                dispatch(savePhotoAC(respons.data.data.photos))
+            }
+        })
+    }
+}
 
 export default profileReducer;
 

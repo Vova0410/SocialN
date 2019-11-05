@@ -1,18 +1,18 @@
 .profile_wrapper {
+    min-width: 900px;
     display: flex;
     flex-direction: column;
 }
 
-.Profile_content_wrapper {
-    min-width: 900px;
+.profile_content_wrapper {
+    width: 100%;
     display: flex;
     margin-top: 40px;
     justify-content: space-between;
 }
 
 .friends_items {
-    width: 35%;
-    min-width: 268px;
+
     overflow: hidden;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .posts_items {
-    width: 100%;
+    width: calc(100% - 335px);
     padding-left: 30px;
     background: #fff;
     border: 1px solid #C5C7CA;

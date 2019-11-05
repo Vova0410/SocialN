@@ -1,6 +1,8 @@
 import React from 'react';
 import Profile from "./Profile";
-import {getUserProfileDAL, SetPofileData, getUserStatusDAL, upDateStateDAL} from "../../state/profile-reducer";
+import {
+    getUserProfileDAL, SetPofileData, getUserStatusDAL, upDateStateDAL, saveProfileDAL, savePhotoDAL
+} from "../../state/profile-reducer";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {toggleIsFetcing} from "../../state/users-reducer";
@@ -13,21 +15,29 @@ import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
 
-
-    componentDidMount() {
+    refreshProfile() {
         let userId = this.props.match.params.userId; // используем для получения id пользователя см урок 60
         if(!userId) {
             userId = this.props.meId;
         }
         this.props.getUserProfileDAL(userId); // thunk from profile-reducer.js
         this.props.getUserStatusDAL(userId);  // thunk from profile-reducer.js
-
     }
 
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.props.match.params.userId != prevProps.match.params.userId)
+        this.refreshProfile()
+    }
     render () {
         return <Profile {...this.props}/>
     }
 }
+
+
 
 const mapStateToProps = (state) => {
     return{
@@ -54,6 +64,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         upDateStateDAL(status) {
             dispatch(upDateStateDAL(status))
+        },
+        saveProfile(profile) {
+           dispatch(saveProfileDAL(profile))
+        },
+        savePhoto(photoFile) {
+           dispatch(savePhotoDAL(photoFile))
         }
     }
 };
