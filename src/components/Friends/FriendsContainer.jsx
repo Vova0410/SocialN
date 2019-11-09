@@ -7,6 +7,7 @@ import {getUserProfileDAL} from "../../state/profile-reducer";
 
 
 
+
 class FriendsContainer extends React.Component{
 
     componentDidMount() {
@@ -25,7 +26,7 @@ class FriendsContainer extends React.Component{
 
     render() {
         return (
-                <Friends {...this.props}/>
+            <Friends {...this.props}/>
         )
     }
 }

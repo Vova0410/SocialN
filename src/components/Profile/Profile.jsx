@@ -1,8 +1,6 @@
 import React from 'react';
 import classes from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-
-import '../Friends/Friends.module.css'
 import FriendsContainer from "../Friends/FriendsContainer";
 import ProfileInfoDescription from "./ProfileInfo/ProfileInfoDescription";
 
@@ -10,6 +8,7 @@ import ProfileInfoDescription from "./ProfileInfo/ProfileInfoDescription";
 
 
 const Profile = (props) => {
+    const profileClass = true;
 
 
     return (
@@ -22,7 +21,7 @@ const Profile = (props) => {
                     <div className={classes.friends_wrapper}>
                         <p>FRIENDS</p>
                         <div className={classes.friendData_wrapper}>
-                            <FriendsContainer />
+                            <FriendsContainer profileClass={profileClass}/>
                         </div>
                     </div>
                 </div>

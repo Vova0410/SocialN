@@ -21,7 +21,10 @@ let reducers = combineReducers({
 const enchancers = compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
 );
-let store = createStore(reducers, applyMiddleware(thunk));
+let store = createStore(reducers,
+    compose(
+    applyMiddleware(thunk),
+        enchancers));
 
 window.store = store;
 
