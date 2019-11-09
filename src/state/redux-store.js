@@ -1,4 +1,4 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import profileReducer from './profile-reducer';
 import dialogReducer from './dialog-reducer';
 import userReducer from './users-reducer';
@@ -18,8 +18,12 @@ let reducers = combineReducers({
     frindePage: friendsReducer,
     app: appReducer
 });
+const enchancers = compose(
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+);
 let store = createStore(reducers, applyMiddleware(thunk));
 
 window.store = store;
 
 export default store;
+

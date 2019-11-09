@@ -16,7 +16,7 @@ const onMainPhotoSelected = (e) => {
      if(e.target.files.length) {
          props.savePhoto(e.target.files[0])
      }
-}
+};
     return (
         <>
         <div className={classes.ProfileSettings}>{isOwner() && <input type="file" placeholder="" onChange={onMainPhotoSelected}/>}</div>

@@ -37,5 +37,5 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(logOutDAL())
         }
     }
-}
+};
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);
